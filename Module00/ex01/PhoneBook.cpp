@@ -6,7 +6,7 @@
 /*   By: jlyu <jlyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 14:58:30 by jlyu              #+#    #+#             */
-/*   Updated: 2023/08/28 14:58:31 by jlyu             ###   ########.fr       */
+/*   Updated: 2023/08/29 11:36:44 by jlyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,21 @@ void PhoneBook::add() {
 		if (std::getline(std::cin, str) && str != "")
 			this->contacts[this->index % 8].setNumber(str);
 	}
+	str = "";
+	while (str == "") {
+		std::cout << "Please enter a darkest secret: ";
+		if (std::getline(std::cin, str) && str != "")
+			this->contacts[this->index % 8].setSecret(str);
+	}
 	this->index++;
 }
 
-void printContacts(Contact *contact, int i) {
-	if (contact->getFirstName() == "")
+void PhoneBook::printContacts(int i) {
+	if (this->contacts[i].getFirstName() == "")
 		return;
-	std::string firstName = contact->getFirstName();
-	std::string lastName = contact->getLastName();
-	std::string nickName = contact->getNickName();
+	std::string firstName = this->contacts[i].getFirstName();
+	std::string lastName = this->contacts[i].getLastName();
+	std::string nickName = this->contacts[i].getNickName();
 
 	if (firstName.size() > 10)
 		firstName = firstName.substr(0, 9) + ".";
@@ -67,16 +73,17 @@ void printContacts(Contact *contact, int i) {
                   << std::setw(10) << nickName << std::endl;
 }
 
-void printIndex(Contact *contact, int i) {
-	if (contact->getFirstName() == "") {
+void PhoneBook::printIndex(int i) {
+	if (this->contacts[i].getFirstName() == "") {
 		std::cout << "Index invalid! You can add more contacts." << std::endl;
 		return;
 	}
-	std::cout << std::setw(12) << "Index: " << i << std::endl;
-	std::cout << std::setw(12) << "First Name: " << contact->getFirstName() << std::endl;
-	std::cout << std::setw(12) << "Last Name: " << contact->getLastName() << std::endl;
-	std::cout << std::setw(12) << "Nick name: " << contact->getNickName() << std::endl;
-	std::cout << std::setw(12) << "P Number: " << contact->getNumber() << std::endl;
+	std::cout << std::right << std::setw(15) << "Index: " << i + 1 << std::endl;
+	std::cout << std::right << std::setw(15) << "First Name: " << this->contacts[i].getFirstName() << std::endl;
+	std::cout << std::right << std::setw(15) << "Last Name: " << this->contacts[i].getLastName() << std::endl;
+	std::cout << std::right << std::setw(15) << "Nick name: " << this->contacts[i].getNickName() << std::endl;
+	std::cout << std::right << std::setw(15) << "Phone No.: " << this->contacts[i].getNumber() << std::endl;
+	std::cout << std::right << std::setw(15) << "Dark Secret: " << this->contacts[i].getSecret() << std::endl;
 }
 
 void PhoneBook::search() {
@@ -90,7 +97,7 @@ void PhoneBook::search() {
 		std::cout << "----------|----------|----------|----------" << std::endl;
 		int i = -1;
 		while (++i < 8)
-			printContacts(&(this->contacts[i]), i);
+			printContacts(i);
 		std::cout << "----------|----------|----------|----------" << std::endl;
 	}
 	std::string str = "";
@@ -100,7 +107,7 @@ void PhoneBook::search() {
 			try {
 				int index = std::stoi(str);
 				if (index <= 8 && index > 0 && &(this->contacts[index]) != NULL)
-					printIndex(&(this->contacts[index - 1]), index);
+					printIndex(index - 1);
 				else
 				{
 					std::cout << "Invalid index, select an index: ";
