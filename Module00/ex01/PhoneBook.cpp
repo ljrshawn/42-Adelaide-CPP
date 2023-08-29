@@ -6,7 +6,7 @@
 /*   By: jlyu <jlyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 14:58:30 by jlyu              #+#    #+#             */
-/*   Updated: 2023/08/29 11:36:44 by jlyu             ###   ########.fr       */
+/*   Updated: 2023/08/29 11:41:01 by jlyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void PhoneBook::search() {
 		std::cout << "----------|----------|----------|----------" << std::endl;
 		int i = -1;
 		while (++i < 8)
-			printContacts(i);
+			PhoneBook::printContacts(i);
 		std::cout << "----------|----------|----------|----------" << std::endl;
 	}
 	std::string str = "";
@@ -107,7 +107,7 @@ void PhoneBook::search() {
 			try {
 				int index = std::stoi(str);
 				if (index <= 8 && index > 0 && &(this->contacts[index]) != NULL)
-					printIndex(index - 1);
+					PhoneBook::printIndex(index - 1);
 				else
 				{
 					std::cout << "Invalid index, select an index: ";
