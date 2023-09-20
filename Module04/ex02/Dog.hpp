@@ -6,7 +6,7 @@
 /*   By: jlyu <jlyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:24:25 by jlyu              #+#    #+#             */
-/*   Updated: 2023/09/19 16:52:23 by jlyu             ###   ########.fr       */
+/*   Updated: 2023/09/20 10:40:51 by jlyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ private:
 	Brain *_brain;
 public:
 	Dog();
-	~Dog();
+	virtual ~Dog();
 
 	Dog(Dog const &other);
 	Dog &operator=(Dog const &other);

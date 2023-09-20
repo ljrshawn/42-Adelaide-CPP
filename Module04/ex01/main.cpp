@@ -6,7 +6,7 @@
 /*   By: jlyu <jlyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:10 by jlyu              #+#    #+#             */
-/*   Updated: 2023/09/19 17:31:48 by jlyu             ###   ########.fr       */
+/*   Updated: 2023/09/20 10:08:46 by jlyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,26 @@
 
 int main()
 {
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();;
+	const Animal *lotsOfAnimals[10];
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (i < 10 / 2)
+			lotsOfAnimals[i] = new Dog();
+		else
+			lotsOfAnimals[i] = new Cat();
+	}
 	std::cout << "-------------------------------------\n";
-	std::cout << j->getType() << std::endl;
-	std::cout << i->getType() << std::endl;
+	std::cout << lotsOfAnimals[0]->getType() << std::endl;
+	std::cout << lotsOfAnimals[5]->getType() << std::endl;
 	Brain *brain;
-	brain = &j->getBrain();
+	brain = &lotsOfAnimals[0]->getBrain();
 	brain->setIdea("Hello World!", 0);
 	brain->setIdea("Let's play ball!!", 1);
 	brain->setIdea("Feed!", 2);
-	std::cout << j->getBrain().getIdea(0) << std::endl;
-	std::cout << j->getBrain().getIdea(1) << std::endl;
+	std::cout << lotsOfAnimals[0]->getBrain().getIdea(0) << std::endl;
+	std::cout << lotsOfAnimals[0]->getBrain().getIdea(1) << std::endl;
 	std::cout << "-------------------------------------\n";
-	delete j;
-	delete i;
+	for (int i = 0; i < 10; i++)
+		delete lotsOfAnimals[i];
 }

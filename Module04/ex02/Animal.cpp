@@ -6,7 +6,7 @@
 /*   By: jlyu <jlyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:01:06 by jlyu              #+#    #+#             */
-/*   Updated: 2023/09/19 15:46:29 by jlyu             ###   ########.fr       */
+/*   Updated: 2023/09/20 10:28:36 by jlyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,4 @@ std::string const &Animal::getType() const {
 
 void Animal::setType(const std::string &type) {
 	this->_type = type;
-}
-
-void Animal::makeSound() const {
-	std::cout << "I am Animal!!! " << std::endl;
 }

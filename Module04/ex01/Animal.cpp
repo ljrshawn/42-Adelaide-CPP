@@ -6,7 +6,7 @@
 /*   By: jlyu <jlyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:01:06 by jlyu              #+#    #+#             */
-/*   Updated: 2023/09/19 15:46:29 by jlyu             ###   ########.fr       */
+/*   Updated: 2023/09/20 10:18:21 by jlyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ Animal &Animal::operator=(Animal const &other) {
 		this->setType(other._type);
 	}
 	return *this;
+}
+
+Brain &Animal::getBrain() const {
+	std::cout << "Animal: No Brain!!! " << std::endl;
+	return *(new Brain());
 }
 
 std::string const &Animal::getType() const {
